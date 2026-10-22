@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Рейс {{ flight.number }}{% endblock %}
+{% block content %}
+<p><a href="/flights">← к списку рейсов</a></p>
+<h1>Рейс {{ flight.number }}</h1>
+<p>{{ flight.origin }} → {{ flight.destination }}</p>
+<p>Отправление: {{ flight.departure }}. Цена: {{ "%.0f"|format(flight.price) }} ₽</p>
+<p>Места: {{ flight.total_seats - flight.sold_seats }} свободно из {{ flight.total_seats }}</p>
+
+<h2>Купить билет</h2>
+<form method="post" action="/flights/{{ flight.id }}/book">
+    <select name="passenger_id" required>
+        {% for p in passengers %}
+        <option value="{{ p.id }}">{{ p.full_name }}</option>
+        {% endfor %}
+    </select>
+    <input type="text" name="seat" placeholder="Место, напр. 12A" required>
+    <button class="btn" type="submit">Оформить</button>
+</form>
+
+<h2>Оформленные билеты</h2>
+{% if tickets %}
+<table>
+    <tr><th>ID</th><th>Пассажир</th><th>Место</th><th>Статус</th></tr>
+    {% for t in tickets %}
+    <tr>
+        <td>{{ t.id }}</td>
+        <td>{{ t.full_name }}</td>
+        <td>{{ t.seat }}</td>
+        <td>{{ t.status }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p class="empty">Билеты ещё не оформлены.</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}Авиакомпания{% endblock %}</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f6f8; color: #222; }
+        nav { background: #1f3a5f; padding: 12px 20px; }
+        nav a { color: #fff; margin-right: 18px; text-decoration: none; font-weight: bold; }
+        nav a:hover { text-decoration: underline; }
+        main { padding: 20px; max-width: 1000px; margin: 0 auto; }
+        h1 { color: #1f3a5f; }
+        table { border-collapse: collapse; width: 100%; background: #fff; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background: #eef2f7; }
+        .btn { display: inline-block; background: #1f3a5f; color: #fff; padding: 6px 14px;
+               border: none; border-radius: 4px; text-decoration: none; cursor: pointer; }
+        .btn-danger { background: #a52a2a; }
+        .flash { background: #d4edda; color: #155724; padding: 10px; border-radius: 4px; margin: 10px 0; }
+        .form-inline { display: inline; }
+        input, select { padding: 6px; margin-right: 6px; }
+        p.empty { color: #888; font-style: italic; }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="/">Главная</a>
+    <a href="/flights">Рейсы</a>
+    <a href="/passengers">Пассажиры</a>
+    <a href="/api/flights">API (JSON)</a>
+</nav>
+<main>
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>
